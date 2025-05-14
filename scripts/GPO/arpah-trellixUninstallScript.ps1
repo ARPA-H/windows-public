@@ -12,7 +12,7 @@ $appsToRemove = @(
     "FireEye Endpoint Agent"
 )
 
-$Agentremoval = "C:\Program Files\McAfee\Agent\x86\FrmInst.exe"
+#$Agentremoval = "C:\Program Files\McAfee\Agent\x86\FrmInst.exe"
 
 $folder = "C:\temp\logs"
 if (Test-path -Path $folder) {
@@ -52,7 +52,7 @@ Start-Sleep -Seconds 180
 $appsremoved = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like "*Trellix*" }
 Write-Host "final check $appsremoved"
 
-if ($appsremoved -eq $null) {
+if ($null -eg $appsremoved) {
 Write-Host "Uninstallation process complete."
 } else {
 RemoveTrellixAgents
