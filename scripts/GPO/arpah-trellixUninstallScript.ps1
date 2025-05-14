@@ -58,3 +58,5 @@ Write-Host "Uninstallation process complete."
 RemoveTrellixAgents
 Write-Host "Uninstallation process failed."
 }
+
+Stop-Transcript
