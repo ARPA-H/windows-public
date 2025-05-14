@@ -52,7 +52,7 @@ Start-Sleep -Seconds 180
 $appsremoved = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like "*Trellix*" }
 Write-Host "final check $appsremoved"
 
-if ($null -eg $appsremoved) {
+if ($null -eq $appsremoved) {
 Write-Host "Uninstallation process complete."
 } else {
 RemoveTrellixAgents
