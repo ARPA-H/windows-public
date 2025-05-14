@@ -12,8 +12,6 @@ $appsToRemove = @(
     "FireEye Endpoint Agent"
 )
 
-#$Agentremoval = "C:\Program Files\McAfee\Agent\x86\FrmInst.exe"
-
 $folder = "C:\temp\logs"
 if (Test-path -Path $folder) {
 "Path Exists"
