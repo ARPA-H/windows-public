@@ -48,7 +48,7 @@ Start-Sleep -Seconds 180
 } 
 else 
 {
-Write-Host "Agent not installed"
+Write-Host "Trellix Agent not installed"
 }
 
 Function FinalcheckforApps {
