@@ -56,7 +56,7 @@ if ($null -eq $appsstillinstalled) {
 Write-Host "Trellix Removal Process Complete"
 } else 
  {
-Write-Host "final check for $appsstillinstalled.Name"
+Write-Host "final check for Apps still installed...." $appsstillinstalled.Name
 Write-Host "reruning uninstall commands"
 
 RemoveTrellixAgents
