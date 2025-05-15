@@ -1,5 +1,5 @@
 ﻿# Remove Trellix from ARPA-H Windows computers
-# Gerald Hegele 5/13/25
+# Gerald Hegele 5/14/25
 
 # Define the list of Trellix applications to uninstall
 $appsToRemove = @(
@@ -11,17 +11,17 @@ $appsToRemove = @(
     "Trellix Endpoint Security (HX) Agent",
     "FireEye Endpoint Agent"
 )
-
+$agentpath = "C:\Program Files\McAfee\Agent\x86"
 $folder = "C:\temp\logs"
+
+#check for log folder
 if (Test-path -Path $folder) {
 "Path Exists"
 } else {
 New-Item -ItemType "directory" -Path "C:\temp"
 New-Item -ItemType "directory" -Path "C:\temp\logs"
 }
-
 Start-Transcript -Path "C:\temp\logs\RemoveTrellix.log" -Append
-
 
 function RemoveTrellixAgents {
 
@@ -40,21 +40,27 @@ function RemoveTrellixAgents {
 RemoveTrellixAgents
 
 # Manual removal of the "Trellix Agent" via EXE as the WMI removal attempt fails
+if (Test-path -Path $agentpath) {
+"Agent not installed"
+} else {
 Write-Host "Uninstalling Trellix Agent"
-Set-Location -Path "C:\Program Files\McAfee\Agent\x86"
+Set-Location -Path $agentpath
 .\FrmInst.exe /Silent /FORCEUNINSTALL
-
 Start-Sleep -Seconds 180
+}
 
 #Final check for installed apps
 $appsremoved = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like "*Trellix*" }
-Write-Host "final check $appsremoved"
 
-if ($null -eq $appsremoved) {
-Write-Host "Uninstallation process complete."
-} else {
+if ($null -eq $appsstillinstalled) {
+Write-Host "Trellix Removal Process Complete"
+} else 
+ {
+Write-Host "final check for $appsstillinstalled"
+Write-Host "reruning uninstall commands"
+
 RemoveTrellixAgents
-Write-Host "Uninstallation process failed."
+
 }
 
 Stop-Transcript
