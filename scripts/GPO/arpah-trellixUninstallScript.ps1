@@ -63,6 +63,7 @@ Write-Host "Trellix Removal Process Complete"
 Write-Host "apps still installed...." $appsstillinstalled.Name
 Write-Host "reruning uninstall commands"
 RemoveTrellixAgents
+Start-Sleep -Seconds 90
 FinalcheckforApps
 Write-Host "apps still installed...." $appsstillinstalled.Name
 }
