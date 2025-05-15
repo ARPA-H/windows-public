@@ -49,8 +49,12 @@ Set-Location -Path $agentpath
 Start-Sleep -Seconds 180
 }
 
+Function FinalcheckforApps {
 #Final check for installed apps
-$appsremoved = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like "*Trellix*" }
+$appsstillinstalled = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like "*Trellix*" }
+}
+
+FinalcheckforApps
 
 if ($null -eq $appsstillinstalled) {
 Write-Host "Trellix Removal Process Complete"
@@ -58,9 +62,9 @@ Write-Host "Trellix Removal Process Complete"
  {
 Write-Host "apps still installed...." $appsstillinstalled.Name
 Write-Host "reruning uninstall commands"
-
 RemoveTrellixAgents
-
+FinalcheckforApps
+Write-Host "apps still installed...." $appsstillinstalled.Name
 }
 
 Stop-Transcript
