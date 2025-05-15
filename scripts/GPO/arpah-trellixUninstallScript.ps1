@@ -16,7 +16,7 @@ $folder = "C:\temp\logs"
 
 #check for log folder
 if (Test-path -Path $folder) {
-"Path Exists"
+Write-Host "Path Exists"
 } else {
 New-Item -ItemType "directory" -Path "C:\temp"
 New-Item -ItemType "directory" -Path "C:\temp\logs"
@@ -41,12 +41,14 @@ RemoveTrellixAgents
 
 # Manual removal of the "Trellix Agent" via EXE as the WMI removal attempt fails
 if (Test-path -Path $agentpath) {
-"Agent not installed"
-} else {
 Write-Host "Uninstalling Trellix Agent"
 Set-Location -Path $agentpath
 .\FrmInst.exe /Silent /FORCEUNINSTALL
 Start-Sleep -Seconds 180
+} 
+else 
+{
+Write-Host "Agent not installed"
 }
 
 Function FinalcheckforApps {
