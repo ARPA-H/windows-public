@@ -22,7 +22,8 @@ New-Item -ItemType "directory" -Path "C:\temp"
 New-Item -ItemType "directory" -Path "C:\temp\logs"
 }
 Start-Transcript -Path "C:\temp\logs\RemoveTrellix.log" -Append
-get-date
+$starttime= get-date
+Write-host $starttime
 
 function RemoveTrellixAgents {
 
