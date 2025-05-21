@@ -1,5 +1,5 @@
 ﻿# Remove Trellix from ARPA-H Windows computers
-# Gerald Hegele 5/14/25
+# Gerald Hegele 5/21/25
 
 # Define the list of Trellix applications to uninstall
 $appsToRemove = @(
