@@ -60,7 +60,7 @@ $appsstillinstalled = Get-WmiObject -Class Win32_Product | Where-Object { $_.Nam
 
 FinalcheckforApps
 
-if ($null -eq $appsstillinstalled) {
+if ($appsstillinstalled -eq $null) {
 Write-Host "Trellix Removal Process Complete"
 } else 
  {
